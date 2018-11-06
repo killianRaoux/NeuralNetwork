@@ -1,2 +1,9 @@
 .vs*
 *.filters
+*.obj
+*.tlog
+*.exe
+*.ilk
+*.log
+*.pdb
+*.idb
