@@ -1,2 +1,4 @@
 # NeuralNetwork
-;Simple implémentation d'un réseau de neurone multicouche (Perceptron).
+Simple implémentation d'un réseau de neurone multicouche (Perceptron).
+
+
