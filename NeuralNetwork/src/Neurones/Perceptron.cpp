@@ -7,7 +7,7 @@
 Constructeur de la class Perceptron
 :param nb_entry: nombre d'entrees du perceptron.
 :param x0: Active ou desactive le poids constant ajoutant un poids qui sera toujours multiplier par 1.*/
-Perceptron::Perceptron(unsigned int nb_entry, bool x0) : m_nb_entry(nb_entry), m_x0(x0), m_alpha(0.1)
+Perceptron::Perceptron(unsigned int nb_entry, double(*foo)(double), bool x0) : m_nb_entry(nb_entry), m_x0(x0), m_alpha(0.1),m_foo(foo)
 {
 	unsigned int i = 0;
 	while (i < nb_entry) {
@@ -37,7 +37,7 @@ double Perceptron::test(std::vector<double> entry)
 	if (m_x0) {
 		y += m_w0;
 	}
-	return y;
+	return m_foo(y);
 }
 
 void Perceptron::learn(std::vector<double> X, double Y)
@@ -66,4 +66,17 @@ void Perceptron::info()
 double sigmanoid(double x)
 {
 	return 1/(1+exp(-x));
+}
+
+double identity(double x)
+{
+	return x;
+}
+
+double seuil(double x)
+{
+	if (x < 0)
+		return 0.0;
+	else
+		return 1.0;
 }
