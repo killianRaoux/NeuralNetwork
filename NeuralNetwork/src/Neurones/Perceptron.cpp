@@ -1,6 +1,5 @@
 #include "Perceptron.h"
 #include <stdlib.h>
-#include "../utils/utils.h"
 #include <math.h>
 /*
 Constructeur de la class Perceptron
@@ -89,20 +88,4 @@ void Perceptron::info()
 	std::printf("\n    poid null:%f\n", m_w0);
 }
 
-double sigmanoid(double x)
-{
-	return 1/(1+exp(-x));
-}
 
-double identity(double x)
-{
-	return x;
-}
-
-double seuil(double x)
-{
-	if (x < 0)
-		return 0.0;
-	else
-		return 1.0;
-}

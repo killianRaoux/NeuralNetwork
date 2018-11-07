@@ -1,16 +1,6 @@
 #pragma once
 #include <vector>
-#define SIGMANOID &sigmanoid
-#define IDENTITY  &identity
-#define SEUIL     &seuil
-//Fonction Siganoid
-double sigmanoid(double x);
-
-//Fonction identity
-double identity(double x);
-
-//Fonction de seuil
-double seuil(double x);
+#include "../utils/utils.h"
 
 
 /*
@@ -27,25 +17,28 @@ Les perceptron sont des neurones unitaires.
 class Perceptron
 {
 public:
-	Perceptron(unsigned int nb_entry, double(*foo)(double)= &identity, bool x0 = true);
-	~Perceptron();
+	Perceptron(unsigned int nb_entry, double(*foo)(double)= &identity, bool x0 = true); //Constructeur
+	~Perceptron(); // Destructeur
+	double test(std::vector<double> X); // Test unitaire sur une entree X
+	double learn(std::vector<double> X, double Y); // Aprentissage unitaire pour un entree x et une sortie y
+	// Getter
 	unsigned int get_nb_entry();
-	double test(std::vector<double> X);
-	double learn(std::vector<double> X, double Y);
 	double get_alpha();
 	double get_momentum();
+	//Setter
 	void set_alpha(double alpha);
 	void set_momentum(double momentum);
-	void info();
+	//Autre
+	virtual void info();
 protected:
-	unsigned int m_nb_entry;
-	std::vector<double> m_poids;
-	std::vector<double> m_delta_poids;
-	bool m_x0;
-	double m_w0;
-	double m_delta;
-	double m_alpha;
-	double m_momentum;
-	double(*m_foo)(double);
+	unsigned int m_nb_entry; // taille de l'entree
+	std::vector<double> m_poids; // liste des poids
+	std::vector<double> m_delta_poids; // liste des delta des poids
+	bool m_x0; // activation du seuil
+	double m_w0; // valeur du poid de seuil
+	double m_delta; // valeur du delta de sorti l'or de l'aprentissage
+	double m_alpha; // valeur tu coefficient d'apprentissage
+	double m_momentum; // valeur du coefficient d'inertie
+	double(*m_foo)(double); // fonction de sortie
 };
 

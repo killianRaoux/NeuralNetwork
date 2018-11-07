@@ -17,12 +17,9 @@ double learnLoop(unsigned int n, double seuil, Perceptron *p, std::vector<double
 	return delta;
 }
 int main() {
-	std::printf("Hello World\n");
-	std::vector<double> x{ 1.0,1.0,1.0 };
-	Perceptron p(3,IDENTITY);
-	std::printf("resultat:%f\n",p.test(x));
-	learnLoop(100, 0.00001, &p, x, 1.0);
-	std::printf("resultat:%f\n", p.test(x));
+	std::vector<unsigned int> sl{ 3,3,3 };
+	MultiLayerPerceptron mlp(sl,3,3);
+	mlp.info();
 	system("pause");
 
 }
