@@ -19,6 +19,10 @@ double learnLoop(unsigned int n, double seuil, Perceptron *p, std::vector<double
 int main() {
 	std::vector<unsigned int> sl{ 3,3,3 };
 	MultiLayerPerceptron mlp(sl,3,3);
+	std::vector<double> res = mlp.test({ 1.0,1.0,1.0 });
+	for (double d: res) {
+		printf("%f ", d);
+	}
 	mlp.info();
 	system("pause");
 

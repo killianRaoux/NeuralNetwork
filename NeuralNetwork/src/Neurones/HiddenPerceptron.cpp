@@ -3,7 +3,7 @@
 
 
 HiddenPerceptron::HiddenPerceptron(unsigned int nb_entry, unsigned int i, unsigned int j, double(*foo)(double)):
-	Perceptron(nb_entry, foo, true), m_i(i), m_j(i)
+	Perceptron(nb_entry, foo, true), m_i(i), m_j(j)
 {
 }
 
@@ -32,5 +32,14 @@ double HiddenPerceptron::foward_propagation(std::vector<double> X)
 	}
 	y += m_w0;
 	return m_foo(y);
+}
+
+void HiddenPerceptron::info()
+{
+	std::printf("HP(%d,%d) w:", m_i, m_j);
+	for (double w : m_poids) {
+		std::printf(" %d", w);
+	}
+	std::printf("\n");
 }
 
