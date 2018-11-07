@@ -27,12 +27,12 @@ unsigned int Perceptron::get_nb_entry()
 	return m_nb_entry;
 }
 
-double Perceptron::test(std::vector<double> entry)
+double Perceptron::test(std::vector<double> X)
 {
 	double y = 0;
 	unsigned int i = 0;
 	while (i < m_nb_entry) {
-		y += entry[i] * m_poids[i];
+		y += X[i] * m_poids[i];
 		i++;
 	}
 	if (m_x0) {

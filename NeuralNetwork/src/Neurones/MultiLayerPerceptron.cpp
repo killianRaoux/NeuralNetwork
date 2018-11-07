@@ -32,7 +32,7 @@ std::vector<double> MultiLayerPerceptron::test(std::vector<double> X)
 	std::vector<double> ltemp;
 	for (std::vector<HiddenPerceptron> l : m_layers) {
 		for (HiddenPerceptron h : l) {
-			ltemp.push_back(h.test(lvalue));
+			ltemp.push_back(h.foward_propagation(lvalue));
 		}
 		lvalue = ltemp;
 		ltemp.clear();
@@ -42,21 +42,45 @@ std::vector<double> MultiLayerPerceptron::test(std::vector<double> X)
 
 std::vector<double> MultiLayerPerceptron::learn(std::vector<double> X, std::vector<double> Y)
 {
-	std::vector<double> deltas;
-	std::vector<double> delta_temp;
+	std::vector<double> deltas; // valeurs des delta Y-yres ou delta(t-1)*Swi
+	std::vector<double> delta_temp; // valeur transitoire
 	std::vector<double> yres = test(X);
+	// Delta des couche de sortie.
+
 	unsigned int i = 0;
 	for (double y : yres) {
 		deltas.push_back(Y[i] - y);
 	}
-	unsigned int k = m_layers.size() - 1;
-	while (k) {
+	// Delta des couche cacher.
+
+	unsigned int k = m_layers.size() - 1; // On inverse l'ordre de lecture des couche (Layer)
+	while (k) { 
+		// Initialisation des delta temp
+		if (k > 1) {
+			delta_temp = std::vector<double>(m_structur[k - 1]);
+		}
+		else {
+			delta_temp = std::vector<double>(m_xsize);
+		}
+		// 
 		i = 0;
 		for (HiddenPerceptron h : m_layers[k]) {
-			h.back_propagation(deltas[i]);
+			for (double d : h.back_propagation(deltas[i])) {
+				delta_temp[i] += d;
+			}
 			i++;
 		}
+		deltas = delta_temp;
 		k--;
+	}
+	std::vector<double> lvalue = X;
+	std::vector<double> ltemp;
+	for (std::vector<HiddenPerceptron> l : m_layers) {
+		for (HiddenPerceptron h : l) {
+			ltemp.push_back(h.foward_propagation(lvalue));
+		}
+		lvalue = ltemp;
+		ltemp.clear();
 	}
 	return deltas;
 }

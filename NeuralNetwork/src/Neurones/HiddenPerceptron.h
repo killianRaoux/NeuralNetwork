@@ -6,8 +6,12 @@ class HiddenPerceptron :
 public:
 	HiddenPerceptron(unsigned int nb_entry, unsigned int i, unsigned int j, double(*foo)(double) = &identity);
 	~HiddenPerceptron();
-	std::vector<double> back_propagation(double deltas);
+	// Calcul d'un resulta pour un entree X
 	double foward_propagation(std::vector<double> X);
+	// Calcul des valeurs delta.
+	std::vector<double> back_propagation(double deltas);
+	// Rectification des poids.
+	double final_propagation(std::vector<double>);
 	void info();
 private:
 	std::vector<double> m_X;
