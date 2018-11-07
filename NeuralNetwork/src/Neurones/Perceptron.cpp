@@ -1,17 +1,19 @@
 #include "Perceptron.h"
-#include <cstdlib> // Ajout de random
 #include <stdlib.h>
 #include "../utils/utils.h"
 #include <math.h>
 /*
 Constructeur de la class Perceptron
 :param nb_entry: nombre d'entrees du perceptron.
-:param x0: Active ou desactive le poids constant ajoutant un poids qui sera toujours multiplier par 1.*/
-Perceptron::Perceptron(unsigned int nb_entry, double(*foo)(double), bool x0) : m_nb_entry(nb_entry), m_x0(x0), m_alpha(0.1),m_foo(foo)
+:param x0: Active ou desactive le poids constant ajoutant un poids qui sera toujours multiplier par 1.
+:param foo: fonction de sortie de la fonction test. L'utilisateur peut utiliser les defines.*/
+Perceptron::Perceptron(unsigned int nb_entry, double(*foo)(double), bool x0) :
+	m_nb_entry(nb_entry), m_x0(x0), m_alpha(0.1),m_foo(foo), m_momentum(0.9)
 {
 	unsigned int i = 0;
 	while (i < nb_entry) {
 		m_poids.push_back(random_double());
+		m_delta_poids.push_back(0.0);
 		i++;
 	}
 	m_w0 = random_double();
@@ -40,16 +42,40 @@ double Perceptron::test(std::vector<double> entry)
 	return m_foo(y);
 }
 
-void Perceptron::learn(std::vector<double> X, double Y)
+double Perceptron::learn(std::vector<double> X, double Y)
 {
 	m_delta = Y - test(X);
 	unsigned int i = 0;
+	double sig = 0;
 	while (i < m_nb_entry) {
-		m_poids[i] += m_alpha * m_delta* X[i];
+		sig = m_momentum * m_alpha * m_delta* X[i] + (1-m_momentum)*m_delta_poids[i];
+		m_delta_poids[i] = sig;
+		m_poids[i] += sig;
 		i++;
 	}
 	m_w0 += m_alpha * m_delta;
-	std::printf("Final delta:%f avec un resulta de %f\n", Y - test(X), test(X));
+	//std::printf("Final delta:%f avec un resulta de %f\n", Y - test(X), test(X));
+	return m_delta;
+}
+
+double Perceptron::get_alpha()
+{
+	return m_alpha;
+}
+
+double Perceptron::get_momentum()
+{
+	return m_momentum;
+}
+
+void Perceptron::set_alpha(double alpha)
+{
+	m_alpha = alpha;
+}
+
+void Perceptron::set_momentum(double momentum)
+{
+	m_momentum = momentum;
 }
 
 void Perceptron::info()
