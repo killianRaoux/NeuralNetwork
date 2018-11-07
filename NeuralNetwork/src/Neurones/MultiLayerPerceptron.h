@@ -13,7 +13,7 @@ public:
 	// Fonction de test sans aprentissage.
 	std::vector<double> test(std::vector<double> X);
 	// Fonction d'aprentissage.
-	double learn(std::vector<double> X, double Y);
+	std::vector<double> learn(std::vector<double> X, std::vector<double> Y);
 	// Fonction permetant d'afficher les information du MLP
 	void info();
 private:

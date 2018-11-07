@@ -31,7 +31,8 @@ double HiddenPerceptron::foward_propagation(std::vector<double> X)
 		i++;
 	}
 	y += m_w0;
-	return m_foo(y);
+	m_yres = m_foo(y);
+	return m_yres;
 }
 
 void HiddenPerceptron::info()

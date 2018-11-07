@@ -11,6 +11,7 @@ public:
 	void info();
 private:
 	std::vector<double> m_X;
+	double m_yres;
 	unsigned int m_i, m_j;
 };
 

@@ -40,6 +40,27 @@ std::vector<double> MultiLayerPerceptron::test(std::vector<double> X)
 	return lvalue;
 }
 
+std::vector<double> MultiLayerPerceptron::learn(std::vector<double> X, std::vector<double> Y)
+{
+	std::vector<double> deltas;
+	std::vector<double> delta_temp;
+	std::vector<double> yres = test(X);
+	unsigned int i = 0;
+	for (double y : yres) {
+		deltas.push_back(Y[i] - y);
+	}
+	unsigned int k = m_layers.size() - 1;
+	while (k) {
+		i = 0;
+		for (HiddenPerceptron h : m_layers[k]) {
+			h.back_propagation(deltas[i]);
+			i++;
+		}
+		k--;
+	}
+	return deltas;
+}
+
 void MultiLayerPerceptron::info()
 {
 	std::printf("MLP\n    xsize:%d  ysize:%d\n    nlayer:%d  strucure:", m_xsize, m_ysize, m_layers.size());
