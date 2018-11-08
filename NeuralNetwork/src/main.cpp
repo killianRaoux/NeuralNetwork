@@ -17,14 +17,17 @@ double learnLoop(unsigned int n, double seuil, Perceptron *p, std::vector<double
 	return delta;
 }
 int main() {
-	std::vector<unsigned int> sl{ 3,3,3 };
-	MultiLayerPerceptron mlp(sl,3,3);
+	double alpha = 0.1;
+	double momentum = 0.95;
+	std::vector<unsigned int> sl{ 3 };
+	MultiLayerPerceptron mlp(sl,3,1, &alpha, &momentum);
 	mlp.info();
+	std::vector<double> X{ 1.0,1.0,1.0 };
 	for (int i = 0; i < 100; i++) {
-		mlp.learn({ 1.0,1.0,1.0 }, { 1.0 });
-	}
-	for (double d: mlp.learn({ 1.0,1.0,1.0 }, { 1.0 })) {
-		printf("%f ", d);
+		for (double d : mlp.learn(X, { 1.0 , 0.0, 0.0})) {
+			printf("%f ", d);
+		}
+		printf("\n");
 	}
 	mlp.info();
 	system("pause");

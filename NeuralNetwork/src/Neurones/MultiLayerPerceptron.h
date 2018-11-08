@@ -8,7 +8,7 @@ class MultiLayerPerceptron
 {
 public:
 	//Constructeur
-	MultiLayerPerceptron(std::vector<unsigned int> layer_structur, unsigned int xsize, unsigned int ysize, double(*foo)(double) = &identity);
+	MultiLayerPerceptron(std::vector<unsigned int> layer_structur, unsigned int xsize, unsigned int ysize, double * alpha, double * momentum, double(*foo)(double) = &identity);
 	~MultiLayerPerceptron();
 	// Fonction de test sans aprentissage.
 	std::vector<double> test(std::vector<double> X);
@@ -19,8 +19,10 @@ public:
 private:
 	double(*m_foo)(double);
 	std::vector<unsigned int> m_structur;
-	std::vector<std::vector<HiddenPerceptron>> m_layers;
+	std::vector<std::vector<HiddenPerceptron*>> m_layers;
 	unsigned int m_xsize;
 	unsigned int m_ysize;
+	double *m_alpha;
+	double *m_momentum;
 };
 
