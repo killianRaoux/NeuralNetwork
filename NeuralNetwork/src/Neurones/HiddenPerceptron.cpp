@@ -32,7 +32,6 @@ std::vector<double> HiddenPerceptron::back_propagation(double delta)
 
 double HiddenPerceptron::foward_propagation(std::vector<double> X)
 {
-	
 	m_X = std::vector<double>(X);
 	double y = 0;
 	unsigned int i = 0;

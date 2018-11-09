@@ -122,9 +122,11 @@
     <ClCompile Include="src\Neurones\MultiLayerPerceptron.cpp" />
     <ClCompile Include="src\Neurones\Perceptron.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Neurones\Neural.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Neurones\Neural.h" />
     <ClInclude Include="src\Neurones\HiddenPerceptron.h" />
     <ClInclude Include="src\Neurones\MultiLayerPerceptron.h" />
     <ClInclude Include="src\Neurones\Perceptron.h" />
