@@ -1,15 +1,16 @@
 #pragma once
+#include "../core.h"
 
-// Retourne un double random entre min et max (de base entre -1 et 1)
-double random_double(double min = -1.0, double max = 1.0);
-#define SIGMANOID &sigmanoid
-#define IDENTITY  &identity
-#define SEUIL     &seuil
-//Fonction Siganoid
-double sigmanoid(double x);
+namespace NeuralNetWork {
+	// Retourne un double random entre min et max (de base entre -1 et 1)
+	double NN_API random_double(double min = -1.0, double max = 1.0);
 
-//Fonction identity
-double identity(double x);
+	//Fonction Siganoid
+	double NN_API sigmanoid(double x);
 
-//Fonction de seuil
-double seuil(double x);
+	//Fonction identity
+	double NN_API identity(double x);
+
+	//Fonction de seuil
+	double NN_API seuil(double x);
+}
