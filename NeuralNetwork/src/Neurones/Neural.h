@@ -13,4 +13,5 @@ struct IOData {
 	std::vector<double> Y;
 };
 
+void add_IO(std::vector<IOData>* datas, std::vector<double> X, std::vector<double> Y);
 void learning_loop(Neural*,IOData, unsigned int, double);
