@@ -71,16 +71,12 @@ void test() {
 	double Bv[6] = { 0.0 ,1.0 ,2.0 ,3.0 ,4.0 ,5.0 };
 	Matrice A(3, 2, Av);
 	Matrice B(2, 3, Bv);
-	A.info();
-	B.info();
-	printf("Hello");
-	(A*B).info();
 	Matrice C = A * B;
 	C.info();
 }
 // Point d'entree du programme.
 int main() {
-	Exemple1();
+	test();
 	system("pause");
 }
 

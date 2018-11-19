@@ -9,7 +9,9 @@ namespace NeuralNetWork {
 		Matrice();
 		Matrice(unsigned int i, unsigned int j, double base_value = 0);
 		Matrice(unsigned int i, unsigned int j, double* value);
+
 		~Matrice();
+
 		void set(unsigned int i, unsigned j, double value);
 		double get(unsigned int i, unsigned j);
 		double* get_value();
