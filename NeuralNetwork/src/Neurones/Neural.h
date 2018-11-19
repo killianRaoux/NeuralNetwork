@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "../core.h"
+#include "Erreur.h"
 const double MAXERROR = 100000.0;
 namespace NeuralNetWork {
 	class NN_API Neural

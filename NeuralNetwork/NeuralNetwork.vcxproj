@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\utils\Matrice.cpp" />
     <ClCompile Include="src\Neurones\HiddenPerceptron.cpp" />
     <ClCompile Include="src\Neurones\MultiLayerPerceptron.cpp" />
     <ClCompile Include="src\Neurones\Perceptron.cpp" />
@@ -139,7 +140,9 @@
     <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\utils\Matrice.h" />
     <ClInclude Include="src\core.h" />
+    <ClInclude Include="src\Neurones\Erreur.h" />
     <ClInclude Include="src\Neurones\Neural.h" />
     <ClInclude Include="src\Neurones\HiddenPerceptron.h" />
     <ClInclude Include="src\Neurones\MultiLayerPerceptron.h" />

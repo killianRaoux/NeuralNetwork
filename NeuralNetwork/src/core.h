@@ -4,4 +4,4 @@
 #define NN_API __declspec(dllexport)
 #else
 #define NN_API __declspec(dllimport)
-#endif // 
+#endif

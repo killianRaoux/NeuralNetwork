@@ -1,5 +1,5 @@
 #include "HiddenPerceptron.h"
-
+#include "Erreur.h"
 
 namespace NeuralNetWork {
 	HiddenPerceptron::HiddenPerceptron(unsigned int nb_entry, unsigned int i, unsigned int j, double *alpha, double* momentum, double(*foo)(double)) :

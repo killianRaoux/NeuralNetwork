@@ -4,6 +4,10 @@ namespace NeuralNetWork {
 	MultiLayerPerceptron::MultiLayerPerceptron(std::vector<unsigned int> layer_structur, double * alpha, double * momentum, double(*foo)(double)) :
 		m_xsize(layer_structur[0]), m_alpha(alpha), m_momentum(momentum), m_structur(layer_structur)
 	{
+		//Test de la valeur d'alpha
+		if (*alpha < 0.0 || *alpha > 1.0) {
+			printf("Erreur: la valeur d'apha %f n'est pas compris entre 0 et 0\n", *alpha);
+		}
 		std::vector<HiddenPerceptron*> layer;
 		unsigned int lsize = m_xsize;
 		unsigned int i = 0;
@@ -91,7 +95,7 @@ namespace NeuralNetWork {
 
 	void MultiLayerPerceptron::info()
 	{
-		std::printf("MLP\n    xsize:%d  ysize:%d\n    nlayer:%d  strucure:", m_xsize, m_ysize, m_layers.size());
+		std::printf("MLP\n    xsize:%d  nlayer:%d  strucure:", m_xsize, m_layers.size());
 		for (unsigned int l : m_structur) {
 			std::printf(" %d", l);
 		}

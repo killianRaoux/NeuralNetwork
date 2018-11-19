@@ -12,7 +12,7 @@ namespace NeuralNetWork {
 	{
 		double erreur = 2 * seuil;
 		std::vector<double> res;
-		for (int i = 0; i < count; i++) {
+		for (unsigned int i = 0; i < count; i++) {
 			erreur = 0.0;
 			count--;
 			res = RN->learn(data.X, data.Y);
